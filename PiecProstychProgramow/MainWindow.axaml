@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PiecProstychProgramow"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PiecProstychProgramow.MainWindow"
+        Title="To-Do List"
+        HorizontalAlignment="400">
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListBox x:Name="Zadania">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type local:TaskItem}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <CheckBox x:Name="Zrobione" IsChecked="{Binding Path=IsCompleted}"></CheckBox>
+                            <TextBlock Margin="5" VerticalAlignment="Center" Text="{Binding Path=Description}"></TextBlock>
+                            <Button Command="{Binding DeleteItem}" x:Name="DelTask" Content="Wyjeb"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBox Margin="10" x:Name="Task" Watermark="Dodaj zadanie"/>
+                <Button Click="newTask" Content="Dodaj!"/>
+                <ComboBox x:Name="FilterComboBox" SelectionChanged="FilterChanged" Margin="10" VerticalAlignment="Center" PlaceholderText="Filtruj">
+                    <ComboBox.Items>
+                        <ComboBoxItem>Wszystkie</ComboBoxItem>
+                        <ComboBoxItem>Zrobione</ComboBoxItem>
+                        <ComboBoxItem>W trakcie</ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        
+</Window>
